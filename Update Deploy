@@ -1,0 +1,25 @@
+Step: 1
+
+ssh root@147.93.103.224
+
+Step: 2
+
+cd /var/www/onesolutions
+
+Step: 3
+
+git fetch origin main
+
+
+Step: 4
+
+git reset --hard origin/main
+
+Step: 5
+
+cd onesolutionsfrontend
+
+
+Step: 6
+
+npm run build
