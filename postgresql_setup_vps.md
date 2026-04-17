@@ -152,6 +152,57 @@ psql -h your_vps_ip -p 5432 -d appdb -U appuser
 
 ---
 
+```bash
+nano /etc/postgresql/*/main/pg_hba.conf
+```
+
+👉 Change this line:
+local   all             all                                     peer
+
+👉 To:
+
+local   all             all                                     md5
+
+
+```bash
+nano /etc/postgresql/*/main/postgresql.conf
+```
+
+Find:
+
+#listen_addresses = 'localhost'
+
+👉 Change to:
+
+listen_addresses = '*'
+
+
+```bash
+nano /etc/postgresql/*/main/pg_hba.conf
+```
+
+Add this line at the bottom:
+
+host    all             all             0.0.0.0/0               md5
+
+👉 This allows connections from anywhere (we can secure later)
+
+```bash
+systemctl restart postgresql
+```
+
+Step 4: Check if PostgreSQL is listening
+
+Run:
+
+```bash
+ss -nltp | grep 5432
+```
+
+👉 You should see:
+
+0.0.0.0:5432
+
 ## 🗄️ PostgreSQL Connection URI
 
 Local:
